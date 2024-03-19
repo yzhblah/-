@@ -12,7 +12,7 @@ x = {}
 y = {}
 city_name = {}
 #读取csv文件
-file_name = '/Users/yzh/Documents/junior2/空间智能计算与服务/课程实训/遗传算法/City.csv'
+file_name = '/Users/yzh/Documents/junior2/空间智能计算与服务/课程实训/SpatialIntelligentComputing/遗传算法/City.csv'
 with open(file_name,'r', encoding='GBK') as file:
     reader = csv.reader(file)
     next(reader)
@@ -169,7 +169,7 @@ for i in range(len(population[max_index])):
     latitude.append(x[population[max_index][i]])
     longtitude.append(y[population[max_index][i]])
 
-china_map = gp.read_file("/Users/yzh/Documents/junior2/空间智能计算与服务/课程实训/遗传算法/地图/中华人民共和国.shp", encoding='gb18030')
+china_map = gp.read_file("/Users/yzh/Documents/junior2/空间智能计算与服务/课程实训/SpatialIntelligentComputing/遗传算法/地图/中华人民共和国.shp", encoding='gb18030')
 china_map.plot(figsize=(20, 12), color="white", edgecolor="black")
 plt.scatter(latitude,longtitude, color='red')
 #连接点
