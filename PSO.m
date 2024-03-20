@@ -4,10 +4,21 @@ close all;
 warning off;
 addpath(genpath(pwd));
  
-data=load('Oliver30.txt');
- 
-a=data(:,2);
-b=data(:,3);
+
+% data=csvread('/Users/yzh/Documents/junior2/空间智能计算与服务/课程实训/SpatialIntelligentComputing/遗传算法/City.csv');
+% 
+% a=data(2:end,2);
+% b=data(2:end,3);
+
+% 读取 CSV 文件，从第二行开始
+opts = detectImportOptions('City.csv');
+opts.DataLines = [2, Inf]; % 从第二行到最后一行
+data = readtable('City.csv', opts);
+
+% 获取第二列和第三列
+a = data{:, 2}; % 第二列
+b = data{:, 3}; % 第三列
+
 C=[a b];                %城市坐标矩阵
 n=size(C,1);            %城市数目
 D=zeros(n,n);           %城市距离矩阵
@@ -27,7 +38,7 @@ m=10;
  
  
  
-%% 初始化所有粒子
+% 初始化所有粒子
 for i=1:m
     x(i,:)=randperm(n);  %粒子位置
 end
@@ -73,7 +84,7 @@ while N<=Nmax
     nummin=a2;
     Gb(N)=Pb(nummin);          %当前群体最优长度
     for i=1:m
-      %% 与个体最优进行交叉
+      % 与个体最优进行交叉
       c1=round(rand*(n-2))+1;  %在[1,n-1]范围内随机产生一个交叉位
       c2=round(rand*(n-2))+1;
       while c1==c2
@@ -111,7 +122,7 @@ while N<=Nmax
       if F(i)>dist
           x(i,:)=xnew1(i,:);
       end
-      %% 与全体最优进行交叉
+      % 与全体最优进行交叉
       c1=round(rand*(n-2))+1;  %在[1,n-1]范围内随机产生一个交叉位
       c2=round(rand*(n-2))+1;
       while c1==c2
@@ -149,7 +160,7 @@ while N<=Nmax
       if F(i)>dist
           x(i,:)=xnew1(i,:);
       end
-      %% 进行变异操作
+      %进行变异操作
       c1=round(rand*(n-1))+1;   %在[1,n]范围内随机产生一个变异位
       c2=round(rand*(n-1))+1;
       temp=xnew1(i,c1);
