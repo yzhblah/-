@@ -30,7 +30,7 @@ n = len(city_name)  #染色体长度
 def initialize_chrom(n):
     chromosome = list(range(1,n))
     random.shuffle(chromosome)
-    # chromosome.reverse()
+    chromosome.reverse()
     chromosome.insert(0,31)
     return chromosome
 
